@@ -41,8 +41,7 @@ export default async function JobResults({
   };
   if (searchRemote) searchFilter.remote = true;
 
-  console.log("The Complete object Filter is:", searchFilter);
-
+  //console.log("The Complete object Filter is:", searchFilter);
   //console.log("Remote checked value is:", remote);
 
   if (searchTitle === undefined || searchType === undefined || searchLocation === undefined) jobs = await Job.find();

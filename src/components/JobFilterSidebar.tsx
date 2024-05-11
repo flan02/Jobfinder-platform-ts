@@ -57,7 +57,7 @@ export default async function JobFilterSidebar({ defaultValues }: JobFilterSideb
   // TODO: Server Component. Actions from form should be handled by a server component and it doesn't require javascript on the client side.
   return (
     <aside className="md:w-[260px] p-4 sticky top-0 bg-background h-fit border rounded-lg">
-      <form action={filterJobs}>
+      <form action={filterJobs} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
 

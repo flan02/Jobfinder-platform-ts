@@ -3,6 +3,8 @@ import JobFilterSidebar from "@/components/JobFilterSidebar";
 import H1 from "@/components/ui/h1";
 import JobResults from "@/components/JobResults";
 import { JobFilterValues } from "@/lib/validation";
+import { Metadata } from "next";
+import { get } from "http";
 
 interface Props {
   searchParams: {
@@ -13,6 +15,33 @@ interface Props {
   };
 }
 
+function getTitle({ q, type, location, remote }: JobFilterValues) {
+  const titlePrefix = q
+    ? `Jobs for ${q}`
+    : type
+      ? `${type} developer jobs`
+      : remote
+        ? 'Remote developer jobs'
+        : 'All developer jobs'
+
+  const titleSuffix = location ? ` in ${location}` : ''
+  return `${titlePrefix}${titleSuffix}`
+}
+
+
+export function generateMetadata({
+  searchParams: { q, type, location, remote }
+}: Props): Metadata {
+  return {
+    title: `${getTitle({
+      q,
+      type,
+      location,
+      remote: remote === 'true'
+    })
+      } | Job Board`
+  }
+}
 
 export default async function Home({
   searchParams: { q, type, location, remote }
@@ -24,10 +53,10 @@ export default async function Home({
     remote: remote === 'true'
   }
   return (
-    <main className="max-w-5xl m-auto px-3 my-10 space-y-10">
+    <main className="min-h-[90vh] max-w-5xl m-auto px-3 my-10 space-y-10">
       <div className="space-y-5 text-center">
         <H1>
-          Developer jobs
+          {getTitle(filteredValues)}
         </H1>
         <p className="text-muted-foreground">Find your dream job</p>
       </div>

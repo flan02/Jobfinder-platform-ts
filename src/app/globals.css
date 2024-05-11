@@ -1,6 +1,23 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para el scroll vertical en Chrome */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho del scroll */
+}
+
+/* Estilo de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(15, 23, 42); /* Color de fondo del scroll */
+  border-radius: 5px; /* Borde redondeado */
+}
+
+/* Estilo del track del scroll */
+::-webkit-scrollbar-track {
+  background-color: rgb(199, 160, 197); /* Color de fondo del track */
+}
+
 
   @layer base {
     :root {
@@ -74,3 +91,4 @@
       @apply bg-background text-foreground;
     }
   }
+
