@@ -4,18 +4,22 @@ import { Label } from "./ui/label"
 import Select from "./ui/select"
 import { jobTypes } from "@/lib/job-types"
 import { Button } from "./ui/button"
-import { jobFilterSchema } from "@/lib/validation"
+import { jobFilterSchema, JobFilterValues } from "@/lib/validation"
 import { redirect } from "next/navigation"
+import FormSubmitButton from "./FormSubmitButton"
 
-
+//! Remember we don't have useEffect, useState in Server Components
 
 type Props = {}
 
-// $ SERVER ACTION FUNCTION
+// $ SERVER ACTION FUNCTION 
 async function filterJobs(formData: FormData) {
-  // TODO This server fc receives the form data when I click on the submit button and filter the jobs
-  'use server'
   //console.log(formData.get("q") as string)
+  // TODO This server fc receives the form data when I click on the submit button and filter the jobs
+  'use server' // * Each server action must have a 'use server' pragma.
+
+  //  This line is only for testing purposes. Remove it when you start implementing the function.
+  // ! throw new Error('Not implemented yet') 
   const values = Object.fromEntries(formData.entries()) // ? Convert form values (FormData) to javascript object
   const { q, type, location, remote } = jobFilterSchema.parse(values) // ? Validate form values. Destructuring parsedValues to {q, type, location, remote}
   const searchParams = new URLSearchParams({ // ? Create a new URLSearchParams object
@@ -41,12 +45,14 @@ async function getDistinctLocations() {
   return distinctLocations
 }
 
+interface JobFilterSidebarProps {
+  defaultValues: JobFilterValues // ? This values will keep as the default values after the form is submitted and the page is reloaded.
+}
+
 // $ SERVER COMPONENT
-export default async function JobFilterSidebar(props: Props) {
+export default async function JobFilterSidebar({ defaultValues }: JobFilterSidebarProps) {
 
   const distinctLocations = await getDistinctLocations()
-
-
   //console.log(distinctLocations);
   // TODO: Server Component. Actions from form should be handled by a server component and it doesn't require javascript on the client side.
   return (
@@ -56,11 +62,13 @@ export default async function JobFilterSidebar(props: Props) {
           <div className="flex flex-col gap-2">
 
             <Label htmlFor="q">Search</Label>
-            <Input id="q" name="q" placeholder="Title, company, etc" />
+            <Input id="q" name="q" placeholder="Title, company, etc"
+              defaultValue={defaultValues.q}
+            />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="type">Type</Label>
-            <Select id="type" name="type" default={true} defaultValue=" " >
+            <Select id="type" name="type" default={true} defaultValue={defaultValues.type || ''} >
               <option className="bg-slate-100" value="" ></option>
               <option className="bg-slate-100" value="">All types</option>
               {
@@ -74,7 +82,7 @@ export default async function JobFilterSidebar(props: Props) {
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="location">Location</Label>
-            <Select className="" id="location" name="location" default={true} defaultValue=" " >
+            <Select className="" id="location" name="location" default={true} defaultValue={defaultValues.location || ''} >
 
               <option className="bg-slate-100 text-sm" value="" ></option>
               <option className="bg-slate-100 text-sm" value="" >All locations</option>
@@ -90,10 +98,17 @@ export default async function JobFilterSidebar(props: Props) {
             </Select>
           </div>
           <div className="flex items-center gap-2 ">
-            <input type="checkbox" id="remote" name="remote" className="ml-1 scale-125 accent-black" />
+            <input type="checkbox" id="remote" name="remote" className="ml-1 scale-125 accent-black"
+              defaultChecked={defaultValues.remote}
+            />
             <Label htmlFor="remote">Remote jobs</Label>
           </div>
-          <Button type="submit" className="w-full">Apply filters</Button>
+          {/* STARTER BUTTON */}
+          {/*<Button type="submit" className="w-full">Apply filters</Button>*/}
+          {/* PERSONALIZED BUTTON */}
+          <FormSubmitButton className="w-full">
+            Apply filters
+          </FormSubmitButton>
         </div>
       </form>
     </aside>
