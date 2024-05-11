@@ -4,6 +4,7 @@ import companyLogoPlaceholder from "@/assets/company-logo-placeholder.png"
 import companyLogoUrl from "@/assets/logo.png"
 import { Banknote, BriefcaseIcon, Clock, Globe2, MapPin } from "lucide-react"
 import { formatMoney, relativeData } from "@/lib/utils"
+import Badge from "./Badge"
 
 type Props = {
   job: typeJob
@@ -58,6 +59,15 @@ export default function JobListItem({ job: {
             {relativeData(createdAt)}
           </p>
         </div>
+      </div>
+      <div className="hidden sm:flex flex-col shrink-0 items-end justify-between">
+        <Badge>
+          {type}
+        </Badge>
+        <span className="flex items-center gap-1.5 text-muted-foreground">
+          <Clock size={16} />
+          {relativeData(createdAt)}
+        </span>
       </div>
 
     </article>
