@@ -14,8 +14,8 @@ type Props = {}
 
 // $ SERVER ACTION FUNCTION 
 async function filterJobs(formData: FormData) {
-  //console.log(formData.get("q") as string)
   // TODO This server fc receives the form data when I click on the submit button and filter the jobs
+  //console.log(formData.get("q") as string)
   'use server' // * Each server action must have a 'use server' pragma.
 
   //  This line is only for testing purposes. Remove it when you start implementing the function.

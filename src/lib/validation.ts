@@ -9,8 +9,10 @@ const companyLogoSchema = z.custom<File | undefined>().refine((file) =>
     return !file || file.size < 1024 * 1024 * 2 //? 2 MB
   }, "File must be less than 2MB")
 
-const requiredString = z.string().min(3, "Required").max(30, "Too long")
+
+const requiredString = z.string().min(3, "Required").max(50, "Too long")
 const numericRequiredString = requiredString.regex(/^\d+$/, "Must be a number")
+
 const applicationSchema = z.object({
   aplicationEmail: requiredString.email().optional().or(z.literal(" ")),
   aplicationUrl: requiredString.url().optional().or(z.literal(" ")),
