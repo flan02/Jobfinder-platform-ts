@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import Job from "@/models/job";
 import JobListItem from "@/components/JobListItem";
 import { JobFilterValues } from "@/lib/validation";
+import Link from "next/link";
 
 interface JobResultsProps {
   filteredValues: JobFilterValues
@@ -50,7 +51,11 @@ export default async function JobResults({
     <div className="space-y-4 grow">
       {
         jobs.map((job) => (
-          <JobListItem key={job._id} job={job} />
+
+          <Link className="block"
+            href={`/jobs/${job.slug}`} key={job._id} >
+            <JobListItem job={job} />
+          </Link>
         ))
       }
       {

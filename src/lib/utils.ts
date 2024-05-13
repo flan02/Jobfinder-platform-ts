@@ -51,3 +51,7 @@ export function distanceTimeFromNow(from: Date) {
 
   return `${seconds} second${seconds > 1 ? 's' : ''} ago`
 }
+
+export function toSlug(value: string) {
+  return value.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+}

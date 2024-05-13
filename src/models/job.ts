@@ -2,6 +2,10 @@
 import { Schema, model, models } from 'mongoose'
 
 const jobSchema = new Schema({
+  slug: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -16,7 +20,7 @@ const jobSchema = new Schema({
   locationType: {
     type: String,
     required: true,
-    enum: ['Remote', 'On-site']
+    enum: ['Remote', 'On-site', 'Hybrid']
   },
   location: {
     type: String,

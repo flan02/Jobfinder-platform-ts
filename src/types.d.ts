@@ -8,10 +8,11 @@ export type typeJob = {
   companyName: string;
   aplicationEmail: string;
   aplicationUrl: string;
-  companyLogoUrL: string;
+  companyLogoUrl: string;
   approved: boolean;
   createdAt: Date;
   updatedAt: Date;
+  //slug: string;
 };
 
 export type typeUser = {

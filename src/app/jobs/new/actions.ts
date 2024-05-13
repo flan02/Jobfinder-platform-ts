@@ -2,6 +2,7 @@
 //* Server actions only runs in server components.
 
 import { connectDB } from "@/lib/mongodb";
+import { toSlug } from "@/lib/utils";
 import { createJobSchema } from "@/lib/validation";
 import Job from "@/models/job";
 //import { put } from "@vercel/blob";
@@ -25,6 +26,8 @@ export async function createJobPosting(formData: FormData) {
     salary,
   } = createJobSchema.parse(values);
 
+  const slug = `${toSlug(title)}`
+
   let companyLogoUrl: string | undefined = undefined;
 
   connectDB();
@@ -32,6 +35,7 @@ export async function createJobPosting(formData: FormData) {
   const newJob = await Job.create({
     title: title.trim(),
     type,
+    slug,
     companyName: companyName.trim(),
     companyLogoUrl,
     locationType,
@@ -40,7 +44,7 @@ export async function createJobPosting(formData: FormData) {
     aplicationUrl: aplicationUrl?.trim(),
     description: description?.trim(),
     salary: parseInt(salary),
-    approved: true,
+    //approved: true, by default it is false after the user revalidate the job it will be true
   });
 
   console.log(newJob)
