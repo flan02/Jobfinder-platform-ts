@@ -10,3 +10,10 @@ db.collection.updateMany({}, { $currentDate: { createdAt: true } });
 ## Journalist AI tool
 
 [link to website](https://www.smartdiary.co)
+
+### sharp
+
+**sharp is a high performance Node.js image processing module that uses the libvips library. It is typically 4x faster than ImageMagick and GraphicsMagick.**
+
+_$ npm install sharp_
+
