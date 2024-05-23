@@ -11,7 +11,7 @@ db.collection.updateMany({}, { $currentDate: { createdAt: true } });
 
 [link to website](https://www.smartdiary.co)
 
-### sharp
+### Sharp.
 
 **sharp is a high performance Node.js image processing module that uses the libvips library. It is typically 4x faster than ImageMagick and GraphicsMagick.**
 
