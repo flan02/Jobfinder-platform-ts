@@ -1,9 +1,13 @@
 "use server";
 
-import prisma from "@/lib/prisma";
+import { connectDB } from "@/lib/mongodb";
+//import prisma from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
+import Job from "@/models/job";
 import { currentUser } from "@clerk/nextjs";
-import { del } from "@vercel/blob";
+
+//import { del } from "@vercel/blob";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -22,10 +26,14 @@ export async function approveSubmission(
       throw new Error("Not authorized");
     }
 
+    /*
     await prisma.job.update({
       where: { id: jobId },
       data: { approved: true },
     });
+    */
+    connectDB();
+    const job = await Job.findOneAndUpdate({ _id: jobId }, { approved: true });
 
     revalidatePath("/");
   } catch (error) {

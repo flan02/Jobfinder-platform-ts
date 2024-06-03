@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Metadata } from "next";
 import AdminNavbar from "./AdminNavbar";
 
@@ -9,8 +9,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
-      <AdminNavbar />
-      {children}
+      <SignedOut>
+        <div className="h-[80vh] flex justify-center items-center">
+          <div className="bg-black w-24 h-10 text-center text-white px-4 py-2 rounded-lg">
+            <SignInButton />
+          </div>
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <AdminNavbar />
+        {children}
+      </SignedIn>
     </ClerkProvider>
   );
 }

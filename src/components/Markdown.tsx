@@ -4,6 +4,8 @@ interface MarkdownProps {
   children: string;
 }
 
+// ! ReactMarkdown is a server-side rendering library, so it is not recommended to use it in the client-side.
+
 export default function Markdown({ children }: MarkdownProps) {
   return (
     <ReactMarkdown

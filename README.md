@@ -17,3 +17,6 @@ db.collection.updateMany({}, { $currentDate: { createdAt: true } });
 
 _$ npm install sharp_
 
+
+# Zero to Authenticate in 10 minutes
+[go to clerk website](https://clerk.com/)
