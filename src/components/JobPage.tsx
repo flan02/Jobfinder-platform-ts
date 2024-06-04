@@ -1,5 +1,6 @@
+
 import { formatMoney } from "@/lib/utils";
-//import { Job } from "@prisma/client";
+
 import { Banknote, Briefcase, Globe2, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +23,7 @@ export default function JobPage({
     companyLogoUrl,
   },
 }: JobPageProps) {
+  const formattedSalary = formatMoney(salary);
   return (
     <section className="w-full grow space-y-5">
       <div className="flex items-center gap-3">
@@ -65,7 +67,7 @@ export default function JobPage({
             </p>
             <p className="flex items-center gap-1.5">
               <Banknote size={16} className="shrink-0" />
-              {formatMoney(salary)}
+              {formattedSalary}
             </p>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Image from "next/image"
 import companyLogoPlaceholder from "@/assets/company-logo-placeholder.png"
 import companyLogoUrl from "@/assets/logo.png"
 import { Banknote, BriefcaseIcon, Clock, Globe2, MapPin } from "lucide-react"
-import { formatMoney, relativeData } from "@/lib/utils"
+import { distanceTimeFromNow, formatMoney, relativeData } from "@/lib/utils"
 import Badge from "./Badge"
 
 type Props = {
@@ -18,12 +18,15 @@ export default function JobListItem({ job: {
   companyName,
   aplicationEmail,
   aplicationUrl,
-  companyLogoUrL,
+  //companyLogoUrL,
   approved,
   description,
   type,
   createdAt
 } }: Props) {
+  const formattedSalary = formatMoney(salary)
+  const formattedDate = distanceTimeFromNow(createdAt)
+  console.log(createdAt);
   return (
     <article className="flex gap-3 border rounded-lg p-5 hover:bg-muted/60 text-slate-500">
       <Image src={companyLogoPlaceholder || companyLogoUrl}
@@ -52,11 +55,11 @@ export default function JobListItem({ job: {
           </p>
           <p className="flex items-center gap-1.5">
             <Banknote size={16} className="shrink-0" />
-            {formatMoney(salary)}
+            {formattedSalary}
           </p>
           <p className="flex items-center gap-1.5 sm:hidden">
             <Clock size={16} className="shrink-0" />
-            {relativeData(createdAt)}
+            {formattedDate}
           </p>
         </div>
       </div>
@@ -66,7 +69,7 @@ export default function JobListItem({ job: {
         </Badge>
         <span className="flex items-center gap-1.5 text-muted-foreground">
           <Clock size={16} />
-          {relativeData(createdAt)}
+          {formattedDate}
         </span>
       </div>
 

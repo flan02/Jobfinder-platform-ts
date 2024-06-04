@@ -29,12 +29,10 @@ export default async function JobResults({ filteredValues, page = 1 }: JobResult
 
   let countJobsPromise;
   if (searchTitle === '' || searchType === '' || searchLocation === '') {
-    jobs = await Job.find().skip(skip).sort({ createdAt: -1 }).limit(4);
-
-
+    jobs = await Job.find({ approved: true }).skip(skip).sort({ createdAt: -1 }).limit(4);
+    countJobsPromise = await Job.countDocuments({ approved: true });
     //const [paginatedJobs, totalJobs] = await Promise.all([jobsPromise, countJobsPromise]);
   }
-  countJobsPromise = await Job.countDocuments();
   const $regexTitle = new RegExp(searchTitle, "i");
   const $regexType = new RegExp(searchType, "i");
   const $regexLocation = new RegExp(searchLocation, "i");
@@ -46,24 +44,41 @@ export default async function JobResults({ filteredValues, page = 1 }: JobResult
     type?: RegExp;
     location?: RegExp;
     remote?: boolean;
+    approved: boolean;
   }
   const searchFilter: Query = {
     title: $regexTitle,
     type: $regexType,
     location: $regexLocation,
-
+    approved: true
   };
   if (searchRemote) searchFilter.remote = true;
 
   //console.log("The Complete object Filter is:", searchFilter);
   //console.log("Remote checked value is:", remote);
 
-  if (searchTitle === undefined || searchType === undefined || searchLocation === undefined) jobs = await Job.find().skip(skip).sort({ createdAt: -1 }).limit(4);
-  else jobs = await Job.find(searchFilter).skip(skip).sort({ createdAt: -1 }).limit(4);
-
+  if (searchTitle === undefined || searchType === undefined || searchLocation === undefined) {
+    jobs = await Job.find({ approved: true }).skip(skip).sort({ createdAt: -1 }).limit(4);
+    countJobsPromise = await Job.countDocuments({ approved: true });
+  } else {
+    jobs = await Job.find(searchFilter).skip(skip).sort({ createdAt: -1 }).limit(4);
+    countJobsPromise = await Job.countDocuments(searchFilter);
+  }
   //console.log("The jobs are:", jobs);
+  //console.log("The countJobsPromise is:", countJobsPromise);
   return (
     <div className="space-y-4 grow">
+      {
+        jobs.length > 0 && (
+          <div className="flex justify-center">
+            <Pagination
+              currentPage={page}
+              totalPages={countJobsPromise ? Math.ceil(countJobsPromise / jobsPerPage) : 1}
+              filterValues={filteredValues}
+            />
+          </div>
+        )
+      }
       {
         jobs.map((job) => (
 
@@ -76,17 +91,7 @@ export default async function JobResults({ filteredValues, page = 1 }: JobResult
       {
         jobs.length === 0 && (<p className="font-semibold text-center m-auto text-muted-foreground">No jobs found. Try adjusting your search filter</p>)
       }
-      {
-        jobs.length > 0 && (
-          <div className="flex justify-center">
-            <Pagination
-              currentPage={page}
-              totalPages={countJobsPromise ? Math.ceil(countJobsPromise / jobsPerPage) : 1}
-              filterValues={filteredValues}
-            />
-          </div>
-        )
-      }
+
     </div>
   )
 }

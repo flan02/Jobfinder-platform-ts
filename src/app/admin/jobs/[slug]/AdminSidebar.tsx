@@ -3,12 +3,14 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { useFormState } from "react-dom";
 import { approveSubmission, deleteJob } from "./actions";
+import { useState } from "react";
 
 interface AdminSidebarProps {
   job: any;  // * this job prop should be of type Job (zod schema)...
 }
 
 export default function AdminSidebar({ job }: AdminSidebarProps) {
+  const [approved, setApproved] = useState(job.approved);
   return (
     <aside className="flex w-[200px] flex-none flex-row items-center gap-2 md:flex-col md:items-stretch">
       {job.approved ? (

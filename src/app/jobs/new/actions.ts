@@ -24,6 +24,7 @@ export async function createJobPosting(formData: FormData) {
     aplicationUrl,
     description,
     salary,
+    remote
   } = createJobSchema.parse(values);
 
   const slug = `${toSlug(title)}`
@@ -44,6 +45,7 @@ export async function createJobPosting(formData: FormData) {
     aplicationUrl: aplicationUrl?.trim(),
     description: description?.trim(),
     salary: parseInt(salary),
+    remote,
     //approved: true, by default it is false after the user revalidate the job it will be true
   });
 

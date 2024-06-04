@@ -59,7 +59,7 @@ export default async function Page({ params: { slug } }: PageProps) {
   //console.log(job);
   //console.log(aplicationLink);
   return (
-    <main className="max-w-5xl px-3 m-auto my-10 flex flex-col md:flex-row items-center gap-5 md:items-start">
+    <main className="min-h-[75vh] max-w-5xl px-3 m-auto my-10 flex flex-col md:flex-row items-center gap-5 md:items-start">
       <JobDetailsPage job={job} />
       <aside>
         <Button asChild>

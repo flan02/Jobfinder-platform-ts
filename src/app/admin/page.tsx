@@ -10,7 +10,7 @@ export default async function AdminPage() {
   const unapprovedJobs = await Job.find({ approved: false });
 
   return (
-    <main className="m-auto my-10 max-w-5xl space-y-10 px-3 h-[75vh]">
+    <main className="m-auto my-10 max-w-5xl space-y-10 px-3 min-h-[75vh]">
       <H1 className="text-center font-bold text-4xl">Admin Dashboard</H1>
       <section className="flex flex-col gap-3">
         <h2 className="text-lg font-bold">Unapproved jobs:</h2>

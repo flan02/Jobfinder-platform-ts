@@ -59,17 +59,9 @@ const jobSchema = new Schema({
     type: Boolean,
     required: true,
     default: false
-  },
-  createdAt: {
-    type: Date,
-    required: true,
-    default: Date.now()
-  },
-  updatedAt: {
-    type: Date,
-    required: true,
-    default: Date.now()
   }
+}, {
+  timestamps: true
 })
 
 // * If you want to use the same model name, you validate that the model exists before using it
