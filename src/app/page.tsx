@@ -4,7 +4,7 @@ import H1 from "@/components/ui/h1";
 import JobResults from "@/components/JobResults";
 import { JobFilterValues } from "@/lib/validation";
 import { Metadata } from "next";
-import { get } from "http";
+
 
 interface Props {
   searchParams: {
@@ -12,6 +12,7 @@ interface Props {
     type?: string;
     location?: string;
     remote?: string;
+    page?: string;
   };
 }
 
@@ -44,7 +45,7 @@ export function generateMetadata({
 }
 
 export default async function Home({
-  searchParams: { q, type, location, remote }
+  searchParams: { q, type, location, remote, page }
 }: Props) {
   const filteredValues: JobFilterValues = {
     q,
@@ -62,7 +63,11 @@ export default async function Home({
       </div>
       <section className="flex flex-col md:flex-row gap-4 ">
         <JobFilterSidebar defaultValues={filteredValues} />
-        <JobResults filteredValues={filteredValues} />
+        <JobResults
+          filteredValues={filteredValues}
+          page={page ? parseInt(page) : undefined}
+        />
+
       </section>
     </main>
   );

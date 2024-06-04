@@ -1,17 +1,18 @@
-// TODO Client-side Way
 
-//"use client";
-//import { useClerk } from "@clerk/nextjs";
+
+"use client";
+import { useClerk } from "@clerk/nextjs";
 
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 export default function AdminNavbar() {
-  //const { user, signOut } = useClerk();
-  //const router = useRouter();
+  const { user, signOut } = useClerk();
+  const router = useRouter();
 
-
+  console.log(user);
 
   return (
     <div className="px-3">
@@ -21,6 +22,7 @@ export default function AdminNavbar() {
         </Link>
         <UserButton />
       </div>
+
     </div>
   );
 }

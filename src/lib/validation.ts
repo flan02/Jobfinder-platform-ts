@@ -51,3 +51,8 @@ export const jobFilterSchema = z.object({
 })
 
 export type JobFilterValues = z.infer<typeof jobFilterSchema>
+
+
+
+
+
