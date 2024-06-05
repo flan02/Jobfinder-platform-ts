@@ -40,7 +40,7 @@ export function generateMetadata({
       location,
       remote: remote === 'true'
     })
-      } | Job Board`
+      } | be Hired`
   }
 }
 
@@ -59,7 +59,7 @@ export default async function Home({
         <H1>
           {getTitle(filteredValues)}
         </H1>
-        <p className="text-muted-foreground">Find your dream job</p>
+        <p className="text-muted-foreground">Check our available jobs</p>
       </div>
       <section className="flex flex-col md:flex-row gap-4 ">
         <JobFilterSidebar defaultValues={filteredValues} />

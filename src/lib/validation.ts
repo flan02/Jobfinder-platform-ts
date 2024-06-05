@@ -37,8 +37,8 @@ export const createJobSchema = z.object({
   companyLogo: companyLogoSchema,
   description: z.string().min(3, "Required").max(5000).optional(),
   salary: numericRequiredString.max(9, "Number can't be longer than 9 digits"),
+  //remote: z.boolean()
   //location: z.string().min(3, "Required").max(1000),
-  remote: z.boolean()
 }).and(applicationSchema).and(locationSchema)
 
 export type CreateJobValues = z.infer<typeof createJobSchema>

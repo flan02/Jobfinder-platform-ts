@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <ClerkProvider>
       <SignedOut>
         <div className="h-[80vh] flex justify-center items-center">
-          <div className="bg-black w-24 h-10 text-center text-white px-4 py-2 rounded-lg">
+          <div className="dark:bg-blue-500 dark:hover:bg-blue-600 w-24 h-10 text-center text-white px-4 py-2 rounded-lg">
             <SignInButton />
           </div>
         </div>

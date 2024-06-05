@@ -36,7 +36,7 @@ const Pagination = ({
     <div className="flex justify-between">
       <Link
         className={cn(
-          "flex items-center gap-2 font-semibold bg-black text-white px-3 py-2 rounded-md",
+          "flex items-center gap-2 font-semibold dark:bg-blue-500 dark:text-muted-foreground px-3 py-2 rounded-md",
           currentPage <= 1 && "invisible"
         )}
         href={generatePageLink(currentPage - 1)}>
@@ -48,7 +48,7 @@ const Pagination = ({
       </span>
       <Link
         className={cn(
-          "flex items-center gap-2 font-semibold bg-black text-white px-3 py-2 rounded-md",
+          "flex items-center gap-2 font-semibold dark:bg-blue-500 dark:text-muted-foreground text-white px-3 py-2 rounded-md",
           currentPage >= totalPages && "invisible"
         )}
         href={generatePageLink(currentPage + 1)} >

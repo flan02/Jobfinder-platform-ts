@@ -51,7 +51,7 @@ interface JobFilterSidebarProps {
 
 // $ SERVER COMPONENT
 export default async function JobFilterSidebar({ defaultValues }: JobFilterSidebarProps) {
-
+  'use server'
   const distinctLocations = await getDistinctLocations()
   //console.log(distinctLocations);
   // TODO: Server Component. Actions from form should be handled by a server component and it doesn't require javascript on the client side.
@@ -63,17 +63,17 @@ export default async function JobFilterSidebar({ defaultValues }: JobFilterSideb
 
             <Label htmlFor="q">Search</Label>
             <Input id="q" name="q" placeholder="Title, company, etc"
-              defaultValue={defaultValues.q}
+              defaultValue={defaultValues.q} className="dark:text-blue-500"
             />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="type">Type</Label>
-            <Select id="type" name="type" default={true} defaultValue={defaultValues.type || ''} >
-              <option className="bg-slate-100" value="" ></option>
-              <option className="bg-slate-100" value="">All types</option>
+            <Select className="dark:text-blue-500" id="type" name="type" default={true} defaultValue={defaultValues.type || ''} >
+              <option className="dark:text-blue-500" value="" ></option>
+              <option className="dark:text-blue-500" value="">All types</option>
               {
                 jobTypes.map((type) => (
-                  <option className="bg-slate-100" key={type} value={type}>
+                  <option className="dark:text-blue-500" key={type} value={type}>
                     {type}
                   </option>
                 ))
@@ -82,14 +82,14 @@ export default async function JobFilterSidebar({ defaultValues }: JobFilterSideb
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="location">Location</Label>
-            <Select className="" id="location" name="location" default={true} defaultValue={defaultValues.location || ''} >
+            <Select className="dark:text-blue-500" id="location" name="location" default={true} defaultValue={defaultValues.location || ''} >
 
-              <option className="bg-slate-100 text-sm" value="" ></option>
-              <option className="bg-slate-100 text-sm" value="" >All locations</option>
+              <option className="dark:text-blue-500 text-sm" value="" ></option>
+              <option className="dark:text-blue-500 text-sm" value="" >All locations</option>
 
               {
                 distinctLocations.map((location) => (
-                  <option className="bg-slate-100 text-sm" key={location} value={location}>
+                  <option className="dark:text-blue-500 text-sm" key={location} value={location}>
                     {location}
                   </option>
                 ))

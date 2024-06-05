@@ -32,6 +32,7 @@ export default forwardRef<HTMLInputElement, LocationInputProps>(
     return (
       <div className="relative">
         <Input
+          className="dark:text-blue-500"
           placeholder="Search for a city..."
           type="search"
           value={locationSearchInput}
@@ -47,7 +48,7 @@ export default forwardRef<HTMLInputElement, LocationInputProps>(
             {cities.map((city) => (
               <button
                 key={city}
-                className="block w-full p-2 text-start"
+                className="block w-full p-2 text-start text-blue-500"
                 onMouseDown={(e) => {
                   e.preventDefault();
                   onLocationSelected(city);

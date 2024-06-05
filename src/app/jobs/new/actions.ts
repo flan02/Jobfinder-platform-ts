@@ -24,12 +24,13 @@ export async function createJobPosting(formData: FormData) {
     aplicationUrl,
     description,
     salary,
-    remote
   } = createJobSchema.parse(values);
 
   const slug = `${toSlug(title)}`
 
   let companyLogoUrl: string | undefined = undefined;
+  let remote = false;
+  if (locationType === 'Remote') remote = true;
 
   connectDB();
 

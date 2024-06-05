@@ -41,7 +41,7 @@ export default function NewJobForm() {
 
   return (
     <main className="max-w-3xl m-auto my-10 space-y-10">
-      <div className="space-y-5 text-center">
+      <div className="space-y-5 text-center text-muted-foreground">
         <H1>Find your perfect developer</H1>
         <p className="text-muted-foreground">
           Get your job posting seen by thousand of job seekers.
@@ -65,7 +65,7 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Job title</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Frontend Developer" {...field} />
+                    <Input className="dark:text-blue-500" placeholder="e.g. Frontend Developer" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -78,8 +78,8 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Job type</FormLabel>
                   <FormControl>
-                    <Select {...field} defaultValue="">
-                      <option value="" hidden>
+                    <Select {...field} defaultValue="" className="dark:text-blue-500">
+                      <option value="" hidden >
                         Select an option
                       </option>
                       {jobTypes.map((jobType: any) => (
@@ -100,7 +100,7 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Company</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} className="dark:text-blue-500" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -135,6 +135,7 @@ export default function NewJobForm() {
                   <FormLabel>Location</FormLabel>
                   <FormControl>
                     <Select
+                      className="dark:text-blue-500"
                       {...field}
                       defaultValue=""
                       onChange={(e) => {
@@ -166,6 +167,7 @@ export default function NewJobForm() {
                   <FormLabel>Office location</FormLabel>
                   <FormControl>
                     <LocationInput
+
                       onLocationSelected={field.onChange}
                       ref={field.ref}
                     />
@@ -191,6 +193,7 @@ export default function NewJobForm() {
               <Label htmlFor="applicationEmail">How to apply</Label>
               <div className="flex justify-between">
                 <FormField
+
                   control={control}
                   name="aplicationEmail"
                   render={({ field }) => (
@@ -198,6 +201,7 @@ export default function NewJobForm() {
                       <FormControl>
                         <div className="flex items-center">
                           <Input
+                            className="dark:text-blue-500"
                             id="aplicationEmail"
                             placeholder="Email"
                             type="email"
@@ -217,6 +221,7 @@ export default function NewJobForm() {
                     <FormItem className="grow">
                       <FormControl>
                         <Input
+                          className="dark:text-blue-500"
                           placeholder="Website"
                           type="url"
                           {...field}
@@ -239,7 +244,7 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Salary</FormLabel>
                   <FormControl>
-                    <Input {...field} type="number" />
+                    <Input {...field} type="number" className="dark:text-blue-500" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -255,6 +260,7 @@ export default function NewJobForm() {
                   </Label>
                   <FormControl>
                     <RichTextEditor
+
                       onChange={(draft) =>
                         field.onChange(draftToMarkdown(draft))
                       }

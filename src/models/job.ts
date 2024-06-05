@@ -59,7 +59,12 @@ const jobSchema = new Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  remote: {
+    type: Boolean,
+    required: true,
   }
+
 }, {
   timestamps: true
 })

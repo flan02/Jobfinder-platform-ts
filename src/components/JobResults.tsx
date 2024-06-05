@@ -24,6 +24,7 @@ export default async function JobResults({ filteredValues, page = 1 }: JobResult
   const jobsPerPage = 4;
   const skip = (page - 1) * jobsPerPage;
 
+  console.log("Search Remote variable value", remote);
   connectDB();
   let jobs;
 
@@ -50,9 +51,11 @@ export default async function JobResults({ filteredValues, page = 1 }: JobResult
     title: $regexTitle,
     type: $regexType,
     location: $regexLocation,
+
     approved: true
   };
   if (searchRemote) searchFilter.remote = true;
+  //if (Array.isArray(jobs) && jobs.length > 0 && jobs[0].locationType === 'Remote') searchFilter.remote = true;
 
   //console.log("The Complete object Filter is:", searchFilter);
   //console.log("Remote checked value is:", remote);

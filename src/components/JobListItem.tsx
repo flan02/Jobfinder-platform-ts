@@ -26,7 +26,7 @@ export default function JobListItem({ job: {
 } }: Props) {
   const formattedSalary = formatMoney(salary)
   const formattedDate = distanceTimeFromNow(createdAt)
-  console.log(createdAt);
+  //console.log(createdAt);
   return (
     <article className="flex gap-3 border rounded-lg p-5 hover:bg-muted/60 text-slate-500">
       <Image src={companyLogoPlaceholder || companyLogoUrl}

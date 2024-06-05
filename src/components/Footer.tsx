@@ -6,9 +6,9 @@ export default function Footer() {
       <div className="mx-auto max-w-5xl space-y-5 px-3 py-5">
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold">Flow Jobs</h3>
+            <h3 className="text-xl font-semibold">#be Hired</h3>
             <p className="text-sm text-muted-foreground">
-              Connecting talents with opportunities
+              Creating job opportunities for developers
             </p>
           </div>
           <div className="flex flex-wrap gap-5 text-sm text-muted-foreground">
@@ -26,8 +26,8 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="text-center text-sm text-muted-foreground text-purple-800">
-          © {new Date().getFullYear()} Job Board, Inc. All rights reserved.
+        <div className="text-center text-sm text-muted-foreground dark:text-blue-500">
+          © {new Date().getFullYear()} be Hired, Inc. All rights reserved.
         </div>
       </div>
     </footer>

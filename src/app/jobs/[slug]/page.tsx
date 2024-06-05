@@ -36,6 +36,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ params: { slug } }));
 }
 
+// * This is how I generate metadata. I can use the data from the Page function to generate the metadata.
 export async function generateMetadata({ params: { slug } }: PageProps): Promise<Metadata> {
   const job = await getJob(slug);
   const metadata = {
